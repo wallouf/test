@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	test avec <% 
+	test avec <%-- <% 
 	com.wallouf.beans.Coyote coyote = (com.wallouf.beans.Coyote) request.getAttribute("coyote");
 	out.println(coyote.getNom());
-	%>
+	%> --%>
+	<jsp:useBean id="coyote" class="com.wallouf.beans.Coyote" scope="request"></jsp:useBean>
+	<jsp:getProperty property="nom" name="coyote"/>
+	<jsp:getProperty property="prenom" name="coyote"/>
 </body>
 </html>
