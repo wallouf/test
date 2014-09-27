@@ -12,12 +12,22 @@
 	${requestScope.coyote.prenom }
 	${requestScope.coyote.nom }<br/>
 	
-	boucle pour une liste sans EL/JSP :
+	Boucle pour une liste sans EL/JSP :
 	<%
 		List<Integer> liste = (List<Integer>) request.getAttribute("liste");
 	for(Integer i : liste){
 		out.println(i + " : ");
 	}
-	%>
+	%><br/>
+	
+	Condition impair/pair sans EL/JSP :
+	<%
+		Integer jour = (Integer) request.getAttribute("jour");
+		if (jour % 2 == 0){
+			out.println("Jour pair :"+ jour);
+		}else{
+			out.println("Jour impair :"+ jour);
+		}
+	%><br/>
 </body>
 </html>

@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.DateTime;
+
 import com.wallouf.beans.Coyote;
+
 
 public class Test extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -27,6 +30,12 @@ public class Test extends HttpServlet {
 		premiereListe.add(123);
 		premiereListe.add(8);
 		
+		/**
+		 * Date avec la librairie Joda
+		 */
+		
+		DateTime dt = new DateTime();
+		Integer jourDuMois = dt.getDayOfMonth();
 		
 		/**
 		 * Passe les attributs
@@ -34,6 +43,7 @@ public class Test extends HttpServlet {
 
 		request.setAttribute("coyote", premierBean);
 		request.setAttribute("liste", premiereListe);
+		request.setAttribute("jour", jourDuMois);
 		
 		
 		/**		
