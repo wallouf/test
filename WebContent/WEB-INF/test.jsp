@@ -8,8 +8,7 @@
 </head>
 <body>
 	test avec :
-	<jsp:useBean id="coyote" class="com.wallouf.beans.Coyote" scope="request"></jsp:useBean>
-	<jsp:getProperty property="prenom" name="coyote"/>
-	<jsp:getProperty property="nom" name="coyote"/>
+	${coyote.prenom }
+	${coyote.nom }
 </body>
 </html>
