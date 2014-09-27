@@ -8,7 +8,7 @@
 </head>
 <body>
 	test avec :
-	${coyote.prenom }
-	${coyote.nom }
+	${requestScope.coyote.prenom }
+	${requestScope.coyote.nom }
 </body>
 </html>
