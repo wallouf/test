@@ -17,6 +17,9 @@ import com.wallouf.beans.Coyote;
 
 public class Test extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String testText = new String("Miaouh");
+		
+		
 		Coyote premierBean = new Coyote();
 		premierBean.setNom("robert");
 		premierBean.setPrenom("de niro");
@@ -41,6 +44,7 @@ public class Test extends HttpServlet {
 		 * Passe les attributs
 		 */
 
+		request.setAttribute("texte", testText);
 		request.setAttribute("coyote", premierBean);
 		request.setAttribute("liste", premiereListe);
 		request.setAttribute("jour", jourDuMois);
