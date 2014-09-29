@@ -14,11 +14,12 @@
 			</thead>
 			<tbody>
 			<c:forEach items="${paramValues }" var="list" varStatus="statut">
-				<tr><td><c:out value="${list['value'] }"></c:out></td><td><c:out value="${list }"></c:out></td></tr>
+				<tr><td><c:out value="${list.key }"></c:out></td><td>
+				<c:forEach items="${list.value }" var="valuesList">
+					<c:out value="${valuesList }"></c:out>
+				</c:forEach>
+				</td></tr>
 			</c:forEach>
-			<c:forTokens items="${paramValues }" var="list" delims="&=" varStatus="statut">
-				<tr><td><c:out value="${list }"></c:out></td></tr>
-			</c:forTokens>
 			</tbody>
 		</table>
 		
