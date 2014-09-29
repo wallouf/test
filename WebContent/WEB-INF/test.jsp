@@ -24,6 +24,12 @@
 		}
 	%><br/>
 	
+	Boucle pour une liste avec EL/JSP :
+	<c:forEach items="${liste }" var="items">
+		<c:out value="${items }"></c:out>
+	</c:forEach>
+	<br/>
+	
 	Condition impair/pair sans EL/JSP :
 	<%
 		Integer jour = (Integer) request.getAttribute("jour");
@@ -33,5 +39,16 @@
 			out.println("Jour impair :"+ jour);
 		}
 	%><br/>
+	
+	Condition impair/pair avec EL/JSP :
+	<c:choose>
+		<c:when test="${jour % 2 == 0 }">
+			<c:out value="Jour pair : ${jour }"></c:out>	
+		</c:when>
+		<c:otherwise>
+			<c:out value="Jour impair : ${jour }"></c:out>
+		</c:otherwise>
+	</c:choose>
+	<br/>
 </body>
 </html>
