@@ -28,7 +28,7 @@
 			<li>Prenom: <c:out value="${param.prenom }"/></li>
 			<li>Pays: </li>
 			<c:choose>
-				<c:when test="${ param.pays != null }">
+				<c:when test="${ !empty param.pays }">
 					<ul>
 						<c:forEach items="${param.pays }" var="list" varStatus="statut">
 							<li><c:out value="${list }"></c:out></li>
@@ -39,7 +39,7 @@
 			</c:choose>
 			<li>Autres pays: </li>
 			<c:choose>
-				<c:when test="${ param.autre != null }">
+				<c:when test="${ !empty param.autre }">
 					<ul>
 						<c:forTokens items="${param.autre }" var="list" delims=",">
 							<li><c:out value="${list }"></c:out></li>
