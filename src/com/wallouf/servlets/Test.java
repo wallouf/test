@@ -16,6 +16,15 @@ import com.wallouf.beans.Coyote;
 
 
 public class Test extends HttpServlet {
+	/**
+	 * Static variables
+	 */
+	public static final String ATT_MESSAGE = "texte";
+	public static final String ATT_BEAN = "coyote";
+	public static final String ATT_LISTE = "liste";
+	public static final String ATT_JOUR = "jour";
+	public static final String VUE = "/WEB-INF/test.jsp";
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String testText = new String("Miaouh");
 		
@@ -44,15 +53,15 @@ public class Test extends HttpServlet {
 		 * Passe les attributs
 		 */
 
-		request.setAttribute("texte", testText);
-		request.setAttribute("coyote", premierBean);
-		request.setAttribute("liste", premiereListe);
-		request.setAttribute("jour", jourDuMois);
+		request.setAttribute(ATT_MESSAGE, testText);
+		request.setAttribute(ATT_BEAN, premierBean);
+		request.setAttribute(ATT_LISTE, premiereListe);
+		request.setAttribute(ATT_JOUR, jourDuMois);
 		
 		
 		/**		
 		 * envoi des donnees
 		 */
-		this.getServletContext().getRequestDispatcher("/WEB-INF/test.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 }
