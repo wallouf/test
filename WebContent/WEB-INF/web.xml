@@ -26,6 +26,10 @@
   <servlet>
     <servlet-name>Download</servlet-name>
     <servlet-class>com.wallouf.servlets.Download</servlet-class>
+	<init-param>
+		<param-name>chemin</param-name> 
+		<param-value>/Users/wallouf/Documents/DEV/fileTemp/</param-value> 
+	</init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>Download</servlet-name>
