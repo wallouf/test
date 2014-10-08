@@ -9,7 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.PreparedStatement;
 
 public class TestJDBC {
     private List<String> messages = new ArrayList<String>();
@@ -30,25 +30,30 @@ public class TestJDBC {
         String utilisateur = "java";
         String motDePasse = "SdZ_eE";
         Connection connexion = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultat = null;
         try {
             messages.add( "Connexion à la base de données..." );
             connexion = (Connection) DriverManager.getConnection( url, utilisateur, motDePasse );
             messages.add( "Connexion réussie !" );
 
-            /* Création de l'objet gérant les requêtes */
-            statement = (Statement) connexion.createStatement();
-            messages.add( "Objet requête créé !" );
+            /* Création de l'objet gérant les requêtes préparées */
+            preparedStatement = (PreparedStatement) connexion
+                    .prepareStatement( "SELECT id, email, mot_de_passe, nom FROM Utilisateur;" );
+            messages.add( "Requête préparée créée !" );
 
-            /* Exécution d'une requête de lecture */
-            resultat = statement.executeQuery( "SELECT id, email, mot_de_passe, nom FROM Utilisateur;" );
-            messages.add( "Requête \"SELECT id, email, mot_de_passe, nom FROM Utilisateur;\" effectuée !" );
+            /*
+             * Remplissage des paramètres de la requête grâce aux méthodes
+             * setXXX() mises à disposition par l'objet PreparedStatement.
+             */
+            // preparedStatement.setString( 1, paramEmail );
+            // preparedStatement.setString( 2, paramMotDePasse );
+            // preparedStatement.setString( 3, paramNom );
 
-            /* Exécution d'une requête d'écriture */
-            // int statut = statement.executeUpdate(
-            // "INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('jmarc@mail.fr', MD5('lavieestbelle78'), 'jean-marc', NOW());"
-            // );
+            /* Exécution de la requête */
+
+            resultat = preparedStatement.executeQuery();
+            messages.add( "Execution de la requete" );
 
             /* Récupération des données du résultat de la requête de lecture */
             while ( resultat.next() ) {
@@ -73,10 +78,10 @@ public class TestJDBC {
                 } catch ( SQLException ignore ) {
                 }
             }
-            messages.add( "Fermeture de l'objet Statement." );
-            if ( statement != null ) {
+            messages.add( "Fermeture de l'objet PreparedStatement." );
+            if ( preparedStatement != null ) {
                 try {
-                    statement.close();
+                    preparedStatement.close();
                 } catch ( SQLException ignore ) {
                 }
             }
